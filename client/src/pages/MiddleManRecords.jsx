@@ -3,6 +3,7 @@ import BasicDetailCard from '../components/BasicDetailCard'
 import Alert from '../components/Alert';
 import Avatar from '../assets/Avatar.png';
 import DetailsInput from '../components/DetailsInput';
+import { ArrowLeft } from 'lucide-react';
 const dummyCardData = [
   {
     id: 1,
@@ -249,6 +250,10 @@ function MiddleManRecords() {
     setIsAdding(false);
     setAddingUser(null);
   }
+  const handleBackToDefault=()=>{
+    setIsAdding(false);
+    AddingUser(null);
+  }
 
   return (
     <div className='w-full h-full'>
@@ -262,7 +267,20 @@ function MiddleManRecords() {
       />
       {/* Header with User Info - Always visible */}
       <div className='p-8 pt-4 pb-3 shadow bg-white flex-shrink-0'>
-        <div className='flex items-center justify-between'>
+        <div className={`justify-between ${!isAdding ? "flex justify-end-safe" : "flex items-center"}`}>
+          {/* Conditional Action Buttons */}
+          {isAdding ? (
+            <button
+              onClick={handleBackToDefault}
+              className='px-4 py-2 flex items-center gap-2 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors duration-200 font-medium'
+            >
+              <ArrowLeft size={20} />
+              Back
+            </button>
+          ) : (
+            undefined
+          )}
+
           {/* User Info */}
           <div className='flex items-center gap-4'>
             <img

@@ -3,7 +3,7 @@ import Avatar from '../assets/Avatar.png';
 import FormInput from '../components/FormInput';
 import Alert from '../components/Alert';
 import BasicDetailCard from '../components/BasicDetailCard';
-
+import { ArrowLeft } from 'lucide-react';
 const dummyCardData = [
   {
     id: 1,
@@ -191,6 +191,10 @@ function UserEntries() {
     setUserToDelete({ id, name: user?.name || "this user" });
     setShowDeleteModal(true);
   }
+  const handleBackToDefault = () => {
+    setIsEditing(false);
+    setEditingUser(null);
+  };
 
   const confirmDelete = async () => {
     if (userToDelete) {
@@ -263,8 +267,21 @@ function UserEntries() {
         duration={4000}
       />
       {/* Header with User Info - Always visible */}
+      {/* User Profile Header */}
       <div className='p-8 pt-4 pb-3 shadow bg-white flex-shrink-0'>
-        <div className='flex items-center justify-between'>
+        <div className={`justify-between ${!isEditing ? "flex justify-end-safe" : "flex items-center"}`}>
+          {/* Conditional Action Buttons */}
+          {isEditing ? (
+            <button
+              onClick={handleBackToDefault}
+              className='px-4 py-2 flex items-center gap-2 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors duration-200 font-medium'
+            >
+              <ArrowLeft size={20} />
+              Back
+            </button>
+          ) : (
+            undefined
+          )}
           {/* User Info */}
           <div className='flex items-center gap-4'>
             <img

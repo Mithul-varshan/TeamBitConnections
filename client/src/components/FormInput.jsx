@@ -84,7 +84,7 @@ function FormInput({ onBack, onSave, initialData = null, isEditMode = false }) {
       value: formData.date
     },
     {
-      label: "Event held Organization",
+      label: "Event holding Organization",
       type: "text",
       name: "eventOrg",
       placeholder: "Enter organization name",

@@ -47,20 +47,7 @@ function UserHome() {
     <div className='h-full flex flex-col bg-[#ffffff]'>
       {/* User Profile Header */}
       <div className='p-8 pt-4 pb-3 shadow bg-white flex-shrink-0'>
-        <div className='flex items-center justify-between'>
-          {/* User Info */}
-          <div className='flex items-center gap-4'>
-            <img
-              src={Avatar}
-              alt="user profile"
-              className='w-14 h-14 rounded-full object-cover'
-            />
-            <div>
-              <p className='text-xl font-semibold text-gray-800'>user@gmail.com</p>
-              <p className='text-sm text-gray-500'>Welcome back!</p>
-            </div>
-          </div>
-
+        <div className={`justify-between ${activeView==="default" ? "flex justify-end-safe" : "flex items-center"}`}>
           {/* Conditional Action Buttons */}
           {activeView === 'default' ? (
             undefined
@@ -73,6 +60,19 @@ function UserHome() {
               Back
             </button>
           )}
+
+          {/* User Info */}
+          <div className='flex items-center gap-4'>
+            <img
+              src={Avatar}
+              alt="user profile"
+              className='w-14 h-14 rounded-full object-cover'
+            />
+            <div>
+              <p className='text-xl font-semibold text-gray-800'>user@gmail.com</p>
+              <p className='text-sm text-gray-500'>Welcome back!</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -101,7 +101,7 @@ function UserHome() {
 
         {activeView === 'camera' && (
           <div className="h-full">
-            <CameraInput onBack={handleBackToDefault}  />
+            <CameraInput onBack={handleBackToDefault} />
           </div>
         )}
 
